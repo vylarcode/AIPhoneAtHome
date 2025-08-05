@@ -1,0 +1,34 @@
+Initial commit: PhoneAIAtHome - Ultra-Low Latency Voice AI Agent
+
+🚀 Features:
+- Ultra-low latency (<800ms) phone AI agent
+- Local LLM processing with Ollama
+- Advanced audio processing (VAD, echo cancellation, noise reduction)
+- Natural conversation flow with interruption handling
+- Twilio integration for phone calls
+- WebSocket-based real-time communication
+- Prometheus metrics and monitoring
+- Docker support
+
+📁 Project Structure:
+- app/: Core application with audio, LLM, and conversation modules
+- config/: Configuration files and templates
+- scripts/: Setup and utility scripts
+- tests/: Comprehensive test suite
+- docker/: Containerization support
+
+🔧 Technology Stack:
+- Python 3.10+ with FastAPI
+- Whisper Turbo for STT
+- Ollama for local LLM
+- Piper TTS for speech synthesis
+- Twilio for telephony
+- WebSocket for real-time communication
+
+📝 Documentation:
+- Comprehensive README with setup instructions
+- PowerShell-specific guide
+- Contributing guidelines
+- MIT License
+
+This initial release provides a complete, production-ready system for running an AI phone agent locally with complete privacy and ultra-low latency.

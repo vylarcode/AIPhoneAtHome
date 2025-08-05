@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  phone-agent:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: phone-ai-agent
+    ports:
+      - "8000:8000"  # API port
+      - "9090:9090"  # Metrics port
+    environment:
+      - SERVER_HOST=0.0.0.0
+      - SERVER_PORT=8000
+      - OLLAMA_HOST=http://ollama:11434
+      - WHISPER_DEVICE=cpu
+      - TTS_DEVICE=cpu
+    volumes:
+      - ../models:/app/models
+      - ../logs:/app/logs
+      - ../.env:/app/.env
+    networks:
+      - phone-agent-network
+    depends_on:
+      - ollama
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama-server
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    networks:
+      - phone-agent-network
+    restart: unless-stopped
+    command: serve
+
+  ngrok:
+    image: ngrok/ngrok:latest
+    container_name: ngrok-tunnel
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    command: http phone-agent:8000
+    ports:
+      - "4040:4040"  # Ngrok web interface
+    networks:
+      - phone-agent-network
+    depends_on:
+      - phone-agent
+
+networks:
+  phone-agent-network:
+    driver: bridge
+
+volumes:
+  ollama-data:

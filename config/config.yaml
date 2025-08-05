@@ -1,0 +1,59 @@
+audio:
+  # Input processing
+  input_format: mulaw
+  input_sample_rate: 8000
+  input_channels: 1
+  
+  # Processing settings
+  chunk_duration_ms: 200
+  chunk_overlap_ms: 50
+  vad_threshold: 0.5
+  silence_threshold_ms: 500
+  
+  # Output processing
+  output_format: mulaw
+  output_sample_rate: 8000
+  output_packet_size_ms: 20
+
+conversation:
+  # Turn management
+  min_speech_duration_ms: 300
+  max_pause_before_response_ms: 800
+  interruption_threshold_ms: 100
+  
+  # Context management
+  max_history_turns: 10
+  context_window_tokens: 2048
+  
+  # Response generation
+  system_prompt: |
+    You are a helpful and conversational AI phone assistant.
+    Keep responses concise and natural for voice conversation.
+    Avoid using special formatting or long explanations.
+    Be friendly and engaging.
+
+whisper:
+  model_size: turbo  # turbo, tiny, base, small
+  language: en
+  task: transcribe
+  beam_size: 1  # Lower for speed
+  best_of: 1
+  patience: 1.0
+  length_penalty: 1.0
+  temperature: 0.0
+  compression_ratio_threshold: 2.4
+  condition_on_previous_text: false  # Faster but less accurate
+  
+tts:
+  model: piper
+  voice: en_US-amy-medium
+  speed: 1.0
+  pitch: 1.0
+  volume: 0.9
+  
+performance:
+  enable_cuda: true
+  cuda_device: 0
+  num_threads: 4
+  use_flash_attention: true
+  use_tensorrt: false  # Optional advanced optimization

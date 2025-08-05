@@ -1,0 +1,76 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# Environment
+.env
+*.env
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+logs/
+*.pid
+
+# Models
+models/
+*.onnx
+*.pt
+*.pth
+*.bin
+*.safetensors
+
+# Audio files
+*.wav
+*.mp3
+*.m4a
+*.flac
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+.hypothesis/
+
+# Build
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Docker
+.dockerignore
+
+# Temporary files
+*.tmp
+temp/
+tmp/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Monitoring
+grafana-storage/
+prometheus-data/
+
+# ngrok
+ngrok.yml
+.ngrok2/
